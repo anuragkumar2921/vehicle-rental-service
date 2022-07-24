@@ -1,0 +1,13 @@
+/.classpath
+/.project
+/*.iml
+/*.iws
+/*.ipr
+/target
+/.*.swp
+/.idea
+var/
+/*.ipr
+/*.iws
+/*.DS_Store
+*/*.DS_Store
