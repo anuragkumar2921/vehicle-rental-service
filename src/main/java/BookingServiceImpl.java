@@ -10,10 +10,11 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public boolean addBranch(String branchName, List<String> vehicleTypes) {
-        Branch branch = Branch.builder()
-                .name(branchName)
-                .vehicleList(new ArrayList<>())
-                .vehicleTypes(vehicleTypes).build();
+//        Branch branch = Branch.builder()
+//                .name(branchName)
+//                .vehicleList(new ArrayList<>())
+//                .vehicleTypes(vehicleTypes).build();
+        Branch branch = new Branch(branchName,vehicleTypes, new ArrayList<>());
         branchMapping.put(branchName, branch);
         return true;
     }
@@ -24,11 +25,12 @@ public class BookingServiceImpl implements BookingService {
         if (Objects.isNull(branch) || !branch.getVehicleTypes().contains(vehicleType)) {
             return false;
         }
-        Vehicle vehicle = Vehicle.builder()
-                .vehicleId(vehicleId)
-                .branchName(branchName)
-                .vehicleType(vehicleType)
-                .bookPrice(price).build();
+//        Vehicle vehicle = Vehicle.builder()
+//                .vehicleId(vehicleId)
+//                .branchName(branchName)
+//                .vehicleType(vehicleType)
+//                .bookPrice(price).build();
+        Vehicle vehicle = new Vehicle(vehicleId, branchName, vehicleType, false, price);
         branch.getVehicleList().add(vehicle);
         return true;
     }
