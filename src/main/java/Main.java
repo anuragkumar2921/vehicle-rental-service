@@ -13,7 +13,7 @@ public class Main {
             String[] command = query.split(" ");
             switch (command[0]) {
                 case "ADD_BRANCH":
-                    List<String> vehicleList = new ArrayList<>(Arrays.asList(command).subList(2, command.length));
+                    List<String> vehicleList = new ArrayList<>(Arrays.asList(command[2].split(",")));
                     System.out.println(bookingService.addBranch(command[1], vehicleList));
                     break;
                 case "ADD_VEHICLE":
