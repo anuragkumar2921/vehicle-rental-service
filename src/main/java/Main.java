@@ -23,7 +23,11 @@ public class Main {
                     System.out.println(bookingService.book(command[1], command[2], Integer.valueOf(command[3]), Integer.valueOf(command[4])));
                     break;
                 case "DISPLAY_VEHICLES":
-                    System.out.println(bookingService.displayVehicle(command[1], Integer.valueOf(command[2]), Integer.valueOf(command[3])));
+                    List<String> vehicles = bookingService.displayVehicle(command[1], Integer.valueOf(command[2]), Integer.valueOf(command[3]));
+                    for(String vehicle : vehicles)
+                    {
+                        System.out.println(vehicle);
+                    }
                     break;
                 case "DROP_VEHICLES":
                     System.out.println(bookingService.dropVehicle(command[1], command[2]));
