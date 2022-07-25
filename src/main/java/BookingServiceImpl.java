@@ -49,12 +49,14 @@ public class BookingServiceImpl implements BookingService {
                 .collect(Collectors.toList());
         if (availableVehicles.isEmpty()) return -1;
         Vehicle vehicle = availableVehicles.get(0);
+        boolean dynamicPrice = dynamicPricingApplicable(branch, vehicleType);
         vehicle.setBooked(true);
         vehicle.setBookedFrom(startTime);
         vehicle.setBookedUpto(endTime);
         int slotCount = endTime - startTime;
-        return dynamicPricingApplicable(branch, vehicleType)
-                ? (int) ((vehicle.getBookPrice() * 0.1 + vehicle.getBookPrice()) * slotCount) : vehicle.getBookPrice() * slotCount;
+        return dynamicPrice ?
+                (int) ((vehicle.getBookPrice() * 0.1 + vehicle.getBookPrice()) * slotCount) :
+                vehicle.getBookPrice() * slotCount;
     }
 
     @Override
@@ -97,7 +99,7 @@ public class BookingServiceImpl implements BookingService {
                 if (vehicle.isBooked()) bookedVehicle++;
             }
         }
-        double bookingPercent = (double) (bookedVehicle / totalVehicle) * 100;
+        double bookingPercent = (((double) bookedVehicle) / totalVehicle) * 100;
         return bookingPercent >= 80;
     }
 }
